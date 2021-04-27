@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+    Author: Vanessa Munoz
+    Project: Health Insurance Risk Calculator 
+
+
+-->
+<head>
+    <meta charset="UTF-8">
+    <title>Health Insurance Risk Calculator</title>
+</head>
+<body style="background-color: rgb(128, 202, 252);"></body>
+
+<body>
+    <h1 style="text-align: center;">Health Insurance Risk Claculator</h1>
+    <p style="font-family:'Courier New'"><b>Fill in your current health information for the categories provided below so we can give you calcukated score of your health risk.</b></p>
+    <h2>Select your age</h2><br/>
+    <select id="q1">
+        <option value="0">Greater than 30</option>
+        <option value="10">Greater than 45</option>
+        <option value="20">Greater than 60</option>
+        <option value="30">Above 60</option>
+</select>
+
+<br/>
+<h2>Select your BMI</h2><br/>
+<select id="q2">
+    <option value="0">Normal</option>
+    <option value="30">Overweight</option>
+    <option value="75">Obese</option>
+</select>
+<br/>
+
+<h2>Select your Blood Pressure</h2>
+<select id="q3">
+    <option value="0">Normal</option>
+    <option value="15">Elevated</option>
+    <option value="30">Stage 1</option>
+    <option value="75">Stage 2</option>
+    <option value="100">Crisis</option>
+</select>
+<br/>
+
+<h2>Select your Family Disease<h2>
+<select id="q4">
+    <option value="10">Diabetes</option>
+    <option value="10">Cancer</option>
+    <option value="10">Alzheimer's</option>
+</select>
+<br/><br/>
+
+<p id = "Result"></p>
+<button type = "button" onclick="calculatetotalscore()">Total Health Score</button>
+</body>
+<p id="Score"></p>
+
+<script>
+console.log("Starting Health Calculator...");
+
+function calculatetotalscore() {
+    let question1Response = document.getElementById('q1').selectedOptions[0].value;
+    let question2Response = document.getElementById('q2').selectedOptions[0].value;
+    let question3Response = document.getElementById('q3').selectedOptions[0].value;
+    let question4Response = document.getElementById('q4').selectedOptions[0].value;
+
+    question1Response = parseInt(question1Response);
+    question2Response = parseInt(question2Response);
+    question3Response = parseInt(question3Response);
+    question4Response = parseInt(question4Response);
+
+    console.log("question1Response: "+question1Response);
+    console.log("question2Response: "+question2Response);
+    console.log("question3Response: "+question3Response);
+    console.log("question4Response: "+question4Response);
+
+    let TotalScore = question1Response + question2Response + question3Response + question4Response; 
+    let RiskLevel; 
+    if (TotalScore <=20) {
+        RiskLevel = "Low Risk";
+    } else if (TotalScore <=50) {
+        RiskLevel = "Moderate Risk";
+    } else if (TotalScore <=75) {
+        RiskLevel = "High Risk"; 
+    } else {
+        RiskLevel = "Unisurable"; 
+    }
+
+    document.getElementById("Result").innerHTML = "Your Total Health Score is "+ TotalScore + "<br/> <br/> You are in the "+ RiskLevel + " Category";}
+
+</script>
+
+
+</body>
+
+
+
+</html>
